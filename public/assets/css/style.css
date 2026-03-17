@@ -1,0 +1,191 @@
+:root {
+    /* Colors from Android OvaDrugX */
+    --primary-blue: #1976D2;
+    --premium-light-bg: #F7F9FC;
+    --text-dark: #212121;
+    --text-secondary: #888888;
+    --white: #FFFFFF;
+    --neon-cyan: #00BCD4;
+    --success-green: #4CAF50;
+    --warning-orange: #FF9800;
+    --error-red: #F44336;
+    
+    /* Layout Constants */
+    --card-radius: 24px;
+    --chip-radius: 12px;
+    --transition-speed: 0.3s;
+    --header-height: 72px;
+    --bottom-nav-height: 72px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--premium-light-bg);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Typography styles matching Android Themes */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+/* Premium Card Styles */
+.premium-card {
+    background-color: var(--white);
+    border-radius: var(--card-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: none;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.premium-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Chip Styles */
+.stat-chip {
+    background-color: var(--white);
+    border-radius: var(--chip-radius);
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.stat-chip:hover {
+    background-color: #f0f4f8;
+}
+
+/* Hero Gradient Matching Android */
+.hero-gradient {
+    background: linear-gradient(135deg, #1976D2 0%, #00BCD4 100%);
+    color: white;
+}
+
+/* Navigation Styles */
+.navbar-web {
+    height: var(--header-height);
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 15px;
+    transition: color var(--transition-speed);
+}
+
+.desktop-nav a:hover, .desktop-nav a.active {
+    color: var(--primary-blue);
+}
+
+.bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--bottom-nav-height);
+    background-color: var(--white);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+    .navbar-web {
+        padding: 0 20px;
+    }
+    
+    .desktop-nav {
+        display: none;
+    }
+    
+    .bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    body {
+        padding-bottom: var(--bottom-nav-height);
+    }
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.nav-item.active {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+.nav-item i {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+/* Buttons */
+.btn-premium {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 24px;
+    font-weight: 700;
+    transition: all var(--transition-speed);
+}
+
+.btn-premium:hover {
+    background-color: #1565C0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(25, 118, 210, 0.3);
+}
+
+.btn-pill {
+    border-radius: 50px;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Target Predictions</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body class="bg-light">
+
+    <!-- Desktop Navbar -->
+    <nav class="navbar-web">
+        <a href="home.html" class="navbar-brand">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+            <span>OvaDrugX</span>
+        </a>
+        
+        <div class="desktop-nav">
+            <a href="home.html">Home</a>
+            <a href="screening.html">Screening</a>
+            <a href="targets.html" class="active">Targets</a>
+            <a href="insights.html">Insights</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        
+        <div class="d-flex align-items-center gap-3">
+            <div class="stat-chip d-none d-md-flex" style="border-radius: 50%; width: 40px; height: 40px; justify-content: center; padding: 0;">
+                <i class="far fa-bell text-dark"></i>
+            </div>
+            <a href="profile.html">
+                <img src="assets/img/profile.png" alt="Profile" width="40" height="40" class="rounded-circle shadow-sm border border-2 border-white">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        <div class="mb-4">
+            <p class="text-secondary">AI-driven identification of molecular targets with high confidence scores and predicted binding sites.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Target Card 1 -->
+            <div class="col-12">
+                <div class="premium-card p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3 me-3">
+                            <i class="fas fa-dna fs-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">BRCA2</h4>
+                            <span class="badge bg-success bg-opacity-10 text-success fw-bold px-3">Optimal Target</span>
+                        </div>
+                        <div class="ms-auto text-end">
+                            <span class="d-block small text-secondary">Confidence</span>
+                            <span class="h5 fw-bold text-primary mb-0">98%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 text-center">
+                        <div class="col-4">
+                            <div class="bg-light rounded-3 p-2">
+                                <span class="d-block small text-secondary">Affinities</span>
+                                <span class="fw-bold">-9.2</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-light rounded-3 p-2">
+                                <span class="d-block small text-secondary">Selectivity</span>
+                                <span class="fw-bold">High</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-light rounded-3 p-2">
+                                <span class="d-block small text-secondary">Risk</span>
+                                <span class="fw-bold text-success">Low</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Target Card 2 -->
+            <div class="col-12">
+                <div class="premium-card p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-info bg-opacity-10 text-info rounded-3 p-3 me-3">
+                            <i class="fas fa-microscope fs-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">PARP1</h4>
+                            <span class="badge bg-primary bg-opacity-10 text-primary fw-bold px-3">Potential Candidate</span>
+                        </div>
+                        <div class="ms-auto text-end">
+                            <span class="d-block small text-secondary">Confidence</span>
+                            <span class="h5 fw-bold text-primary mb-0">84%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 text-center">
+                        <div class="col-4">
+                            <div class="bg-light rounded-3 p-2">
+                                <span class="d-block small text-secondary">Affinities</span>
+                                <span class="fw-bold">-7.8</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-light rounded-3 p-2">
+                                <span class="d-block small text-secondary">Selectivity</span>
+                                <span class="fw-bold">Medium</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-light rounded-3 p-2">
+                                <span class="d-block small text-secondary">Risk</span>
+                                <span class="fw-bold text-warning">Med</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="screening.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Screening</span>
+        </a>
+        <a href="targets.html" class="nav-item active">
+            <i class="fas fa-bullseye"></i>
+            <span>Targets</span>
+        </a>
+        <a href="insights.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Insights</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/workflow.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const gene = localStorage.getItem('discovery_gene');
+            if (!gene) {
+                window.location.href = 'home.html';
+                return;
+            }
+
+            const targetContainer = document.querySelector('.row.g-4');
+            targetContainer.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-primary mb-3" role="status"></div>
+                    <h5 class="fw-bold">AI is predicting targets for ${gene}...</h5>
+                </div>
+            `;
+
+            const result = await workflow.fetchTargets(gene);
+
+            if (result.status === 'success') {
+                const data = result.data;
+                targetContainer.innerHTML = `
+                    <div class="col-12">
+                        <div class="premium-card p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3 me-3">
+                                    <i class="fas fa-dna fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 fw-bold">${data.matched_gene}</h4>
+                                    <span class="badge bg-success bg-opacity-10 text-success fw-bold px-3">Optimal Target</span>
+                                </div>
+                                <div class="ms-auto text-end">
+                                    <span class="d-block small text-secondary">Confidence</span>
+                                    <span class="h5 fw-bold text-primary mb-0">${data.confidence_score}%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="small fw-bold text-secondary mb-2">High Confidence Targets</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    ${data.high_confidence_targets.map(t => `<span class="badge bg-light text-dark border">${t}</span>`).join('')}
+                                </div>
+                            </div>
+
+                            <div class="bg-info bg-opacity-10 rounded-3 p-3 text-center">
+                                <p class="small mb-1 text-secondary">Automatically starting virtual screening in 3 seconds...</p>
+                                <div class="progress" style="height: 4px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    window.location.href = 'screening.html';
+                }, 3000);
+            } else {
+                targetContainer.innerHTML = `<div class="alert alert-danger">${result.message}</div>`;
+            }
+        });
+    </script>
+</body>
+
+</html>

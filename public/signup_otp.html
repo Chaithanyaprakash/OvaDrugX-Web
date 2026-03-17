@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Verify Account</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 10% 20%, rgba(25, 118, 210, 0.05) 0%, rgba(0, 188, 212, 0.05) 90%);
+        }
+        
+        .auth-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 40px;
+        }
+        
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            margin: 0 auto 32px;
+        }
+        
+        .otp-input {
+            width: 48px;
+            height: 56px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 12px;
+            border: 1px solid #E0E0E0;
+            background-color: #F9FAFB;
+            transition: all 0.2s;
+        }
+        
+        .otp-input:focus {
+            box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.1);
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body>
+
+    <div class="premium-card auth-card">
+        <div class="logo-container">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="50">
+        </div>
+        
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">Verify Account</h3>
+            <p class="text-secondary small">We've sent a 6-digit verification code to your email.</p>
+        </div>
+        
+        <form id="otpForm">
+            <div class="d-flex justify-content-between mb-4">
+                <input type="text" maxlength="1" class="otp-input" required autofocus>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+            </div>
+            
+            <button type="submit" class="btn-premium w-100 py-3 fs-6 mb-4">Verify Account</button>
+            
+            <div class="text-center">
+                <p class="text-secondary small mb-1">Didn't receive the code?</p>
+                <a href="#" class="text-primary small fw-bold text-decoration-none">Resend OTP</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        document.getElementById('otpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const otp = Array.from(inputs).map(i => i.value).join('');
+            const email = localStorage.getItem('pending_email');
+            
+            if (!email) {
+                alert('Session expired. Please sign up again.');
+                window.location.href = 'signup.html';
+                return;
+            }
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verifying...';
+
+            const result = await auth.verifyAccount(email, otp);
+
+            if (result.success) {
+                alert('Account verified successfully! Please sign in.');
+                window.location.href = 'signin.html';
+            } else {
+                alert(result.message);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Verify Account';
+            }
+        });
+    </script>
+
+</body>
+</html>

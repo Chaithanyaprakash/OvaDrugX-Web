@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - AI Drug Discovery</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 10% 20%, rgba(25, 118, 210, 0.05) 0%, rgba(0, 188, 212, 0.05) 90%);
+        }
+        
+        .logo-box {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+        
+        .logo-box img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
+        .feature-icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background-color: rgba(25, 118, 210, 0.1);
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .hero-image-container {
+            position: relative;
+        }
+        
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body>
+
+    <!-- Desktop Navbar -->
+    <nav class="navbar-web">
+        <div class="d-flex align-items-center w-100 container">
+            <a href="index.html" class="d-flex align-items-center text-decoration-none text-dark me-auto">
+                <img src="assets/img/launch.png" alt="OvaDrugX" height="40" class="me-2">
+                <span class="fs-4 fw-bold">OvaDrugX</span>
+            </a>
+            <div class="desktop-links d-none d-md-flex align-items-center gap-4">
+                <a href="#features" class="text-secondary text-decoration-none fw-medium">Features</a>
+                <a href="signin.html" class="text-secondary text-decoration-none fw-medium">Sign In</a>
+                <a href="signup.html" class="btn-premium btn-pill">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="logo-box">
+                        <img src="assets/img/launch.png" alt="Logo">
+                    </div>
+                    <h1 class="display-4 fw-bold mb-3 text-dark">Accelerate Drug Discovery with <span class="text-primary">AI Intelligence</span></h1>
+                    <p class="lead text-secondary mb-4">Revolutionize your research with OvaDrugX - the most advanced AI platform for target prediction, virtual screening, and molecular docking.</p>
+                    <div class="d-flex gap-3">
+                        <a href="signup.html" class="btn-premium px-5 py-3 fs-5">Join OvaDrugX</a>
+                        <a href="#features" class="btn btn-outline-primary border-2 px-5 py-3 fs-5 rounded-4 fw-bold">Learn More</a>
+                    </div>
+                    <div class="mt-5 d-flex gap-4">
+                        <div>
+                            <div class="fs-3 fw-bold">10K+</div>
+                            <div class="text-secondary small">Researchers</div>
+                        </div>
+                        <div class="border-start ps-4">
+                            <div class="fs-3 fw-bold">98%</div>
+                            <div class="text-secondary small">Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-container ps-lg-5">
+                        <div class="premium-card p-4 overflow-hidden position-relative">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <span class="badge bg-light text-dark rounded-pill px-3 py-2 border">Live Analysis Feed</span>
+                                <i class="fas fa-ellipsis-h text-secondary"></i>
+                            </div>
+                            <div class="text-center py-5">
+                                <i class="fas fa-dna fa-5x text-primary opacity-25 mb-4"></i>
+                                <h3 class="fw-bold">Virtual Docking...</h3>
+                                <p class="text-secondary">Simulating binding affinity for protein-ligand complexes</p>
+                            </div>
+                            <!-- Mock Data Cards -->
+                            <div class="premium-card p-3 mb-2 border">
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">EGFR - Gefitinib</span>
+                                    <span class="text-success fw-bold">-9.8 kcal/mol</span>
+                                </div>
+                            </div>
+                            <div class="premium-card p-3 border opacity-50">
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">BRAF - Vemurafenib</span>
+                                    <span class="text-primary fw-bold">-8.4 kcal/mol</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating Decorative Cards -->
+                        <div class="floating-card" style="top: -20px; right: 0;">
+                            <i class="fas fa-microscope text-primary fs-3"></i>
+                        </div>
+                        <div class="floating-card" style="bottom: 20px; left: -20px; animation-delay: 2s;">
+                            <i class="fas fa-flask text-info fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <span class="text-primary text-uppercase fw-bold letter-spacing-1 small">Features</span>
+                <h2 class="display-5 fw-bold mt-2">Everything you need for <span class="text-primary">Drug Discovery</span></h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="premium-card p-4 h-100">
+                        <div class="feature-icon-box">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h4 class="mb-3">Target Prediction</h4>
+                        <p class="text-secondary">AI-powered prediction of molecular targets with high confidence scores and binding sites.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="premium-card p-4 h-100">
+                        <div class="feature-icon-box" style="background-color: rgba(76, 175, 80, 0.1); color: var(--success-green);">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4 class="mb-3">Virtual Screening</h4>
+                        <p class="text-secondary">Screen millions of compounds against your target in minutes with our HPC-backed AI models.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="premium-card p-4 h-100">
+                        <div class="feature-icon-box" style="background-color: rgba(255, 152, 0, 0.1); color: var(--warning-orange);">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h4 class="mb-3">Molecular Docking</h4>
+                        <p class="text-secondary">Accurate docking simulations with real-time binding affinity predictions and visualization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-white border-top">
+        <div class="container py-5">
+            <div class="premium-card hero-gradient p-5 text-center">
+                <h2 class="display-5 fw-bold mb-4">Ready to accelerate your research?</h2>
+                <p class="mb-5 lead opacity-75">Join thousands of researchers using OvaDrugX to discover the next generation of therapeutics.</p>
+                <a href="signup.html" class="btn btn-light btn-pill px-5 py-3 fw-bold fs-5 text-primary">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center text-secondary border-top">
+        <p class="small mb-0">&copy; 2026 OvaDrugX Platform. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

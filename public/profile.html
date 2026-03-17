@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Profile</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body class="bg-light">
+
+    <!-- Desktop Navbar -->
+    <nav class="navbar-web">
+        <a href="home.html" class="navbar-brand">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+            <span>OvaDrugX</span>
+        </a>
+        
+        <div class="desktop-nav">
+            <a href="home.html">Home</a>
+            <a href="screening.html">Screening</a>
+            <a href="targets.html">Targets</a>
+            <a href="insights.html">Insights</a>
+            <a href="profile.html" class="active">Profile</a>
+        </div>
+        
+        <div class="d-flex align-items-center gap-3">
+            <div class="stat-chip d-none d-md-flex" style="border-radius: 50%; width: 40px; height: 40px; justify-content: center; padding: 0;">
+                <i class="far fa-bell text-dark"></i>
+            </div>
+            <a href="profile.html">
+                <img src="assets/img/profile.png" alt="Profile" width="40" height="40" class="rounded-circle shadow-sm border border-2 border-white">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        <div class="text-center mb-5">
+            <div class="position-relative d-inline-block mb-3">
+                <img src="assets/img/profile.png" alt="Profile" width="120" height="120" class="rounded-circle shadow border border-4 border-white">
+                <button class="btn btn-primary btn-sm rounded-circle position-absolute bottom-0 end-0 p-2 shadow">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            <h3 class="fw-bold mb-1" id="userName">Loading...</h3>
+            <p class="text-secondary small mb-3" id="userEmail">loading...</p>
+            <div class="d-flex justify-content-center gap-2">
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 rounded-pill fw-bold">Researcher</span>
+                <span class="badge bg-success bg-opacity-10 text-success px-3 rounded-pill fw-bold">Verified</span>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Account Info -->
+            <div class="col-12">
+                <div class="premium-card p-4">
+                    <h6 class="fw-bold mb-4">Account Information</h6>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-light rounded-3 p-2 me-3">
+                            <i class="far fa-user text-secondary"></i>
+                        </div>
+                        <div class="flex-grow-1 border-bottom pb-2">
+                            <span class="d-block small text-secondary">Full Name</span>
+                            <span class="fw-medium" id="infoName">-</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-light rounded-3 p-2 me-3">
+                            <i class="far fa-envelope text-secondary"></i>
+                        </div>
+                        <div class="flex-grow-1 border-bottom pb-2">
+                            <span class="d-block small text-secondary">Email</span>
+                            <span class="fw-medium" id="infoEmail">-</span>
+                        </div>
+                    </div>
+                    <a href="update_profile.html" class="btn btn-outline-primary w-100 rounded-4 py-2 fw-bold">Update Profile</a>
+                </div>
+            </div>
+
+            <!-- Settings Grid -->
+            <div class="col-12">
+                <h6 class="fw-bold mb-3">Settings</h6>
+                <div class="premium-card overflow-hidden">
+                    <div class="list-group list-group-flush">
+                        <a href="change_password.html" class="list-group-item list-group-item-action p-3 d-flex align-items-center border-0">
+                            <i class="fas fa-shield-alt text-primary me-3"></i>
+                            <span class="flex-grow-1">Change Password</span>
+                            <i class="fas fa-chevron-right text-secondary opacity-25"></i>
+                        </a>
+                        <a href="notifications.html" class="list-group-item list-group-item-action p-3 d-flex align-items-center border-0 border-top">
+                            <i class="fas fa-bell text-warning me-3"></i>
+                            <span class="flex-grow-1">Notifications</span>
+                            <i class="fas fa-chevron-right text-secondary opacity-25"></i>
+                        </a>
+                        <a href="javascript:void(0)" onclick="auth.logout()" class="list-group-item list-group-item-action p-3 d-flex align-items-center border-0 border-top text-danger">
+                            <i class="fas fa-sign-out-alt me-3"></i>
+                            <span class="flex-grow-1 fw-bold">Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="screening.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Screening</span>
+        </a>
+        <a href="targets.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Targets</span>
+        </a>
+        <a href="insights.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Insights</span>
+        </a>
+        <a href="profile.html" class="nav-item active">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = auth.checkAuth();
+            if (!user) return;
+
+            // Header info
+            document.getElementById('userName').textContent = user.full_name || 'OvaDrugX User';
+            document.getElementById('userEmail').textContent = user.email || '';
+
+            // Load additional info from get-account for Bio/Department
+            try {
+                const result = await auth.getAccount(user.email);
+                if (result.success) {
+                    document.getElementById('infoName').textContent = result.data.full_name || '-';
+                    document.getElementById('infoEmail').textContent = user.email || '-';
+                    
+                    // Add Mobile and Bio to UI
+                    const infoContainer = document.querySelector('.premium-card .mb-4').parentElement;
+                    const detailsHTML = `
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-light rounded-3 p-2 me-3">
+                                <i class="far fa-comment-alt text-secondary"></i>
+                            </div>
+                            <div class="flex-grow-1 border-bottom pb-2">
+                                <span class="d-block small text-secondary">Bio / Department</span>
+                                <span class="fw-medium">${result.data.department || 'Clinical Researcher'}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-light rounded-3 p-2 me-3">
+                                <i class="fas fa-mobile-alt text-secondary"></i>
+                            </div>
+                            <div class="flex-grow-1 border-bottom pb-2">
+                                <span class="d-block small text-secondary">Mobile Number</span>
+                                <span class="fw-medium">${user.mobile || '-'}</span>
+                            </div>
+                        </div>
+                    `;
+                    // Insert before the Update Profile button
+                    const updateBtn = document.querySelector('a[href="update_profile.html"]');
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = detailsHTML;
+                    updateBtn.parentElement.insertBefore(wrapper, updateBtn);
+                }
+            } catch (err) {
+                console.error("Error loading account details:", err);
+                document.getElementById('infoName').textContent = user.full_name || '-';
+                document.getElementById('infoEmail').textContent = user.email || '-';
+            }
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Molecular Docking</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Dancing Script -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        :root {
+            --report-blue: #303F9F;
+            --report-bg: #FFFFFF;
+            --report-text: #333333;
+        }
+        
+        .report-page {
+            max-width: 800px;
+            margin: 10px auto;
+            background: var(--report-bg);
+            padding: 25px 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            color: var(--report-text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .report-header {
+            border-bottom: 2px solid var(--report-blue);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .report-header h1 {
+            color: var(--report-blue);
+            font-weight: 800;
+            font-size: 26px;
+            margin-bottom: 2px;
+        }
+
+        .report-header p {
+            font-size: 13px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 8px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .summary-label {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .summary-value {
+            color: #333;
+        }
+
+        /* Progress Bars */
+        .report-progress {
+            height: 10px;
+            background: #EEEEEE;
+            border-radius: 0;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .pb-efficiency { background-color: #4CAF50 !important; }
+        .pb-safety { background-color: #2196F3 !important; }
+
+        .progress-container {
+            display: grid;
+            grid-template-columns: 160px 1fr 50px;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        /* Side Effect Chart */
+        .bar-chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 110px;
+            margin-top: 15px;
+            padding-bottom: 30px;
+        }
+
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70px;
+        }
+
+        .bar {
+            width: 35px;
+            background: #CCCCCC;
+            position: relative;
+            transition: height 1s ease;
+        }
+
+        .bar::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #F44336;
+        }
+
+        .bar-label {
+            font-size: 10px;
+            font-weight: 600;
+            transform: rotate(-35deg);
+            margin-top: 10px;
+            white-space: nowrap;
+        }
+
+        .bar-value {
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        /* Weekly Forecast */
+        .forecast-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding: 0 50px;
+        }
+
+        .forecast-bar {
+            width: 40px;
+            background: #E3F2FD;
+            height: 80px;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .forecast-fill {
+            width: 100%;
+            background: #2196F3;
+            transition: height 1s ease;
+        }
+
+        .forecast-label {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        /* Footer Signature */
+        .report-footer {
+            margin-top: 40px;
+            border-top: 2px solid #333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .signature-area {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            margin-top: 5px;
+        }
+
+        .footer-info {
+            text-align: right;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 800;
+            font-style: italic;
+            margin-bottom: 3px;
+        }
+
+        .footer-detail {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 1px;
+        }
+
+        /* Utility */
+        .divider {
+            border-bottom: 1px solid #EEEEEE;
+            margin: 20px 0;
+        }
+
+        .btn-export-floating {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            .bottom-nav, .btn-export-floating, .navbar-web { display: none !important; }
+            .report-page { margin: 0; box-shadow: none; width: 100%; max-width: none; }
+        }
+
+        /* Signature Modal Styles */
+        .signature-pad-container {
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            background: #ffffff;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l5 5"></path><path d="M9.5 14.5L16 8"></path></svg>'), crosshair;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+        .signature-pad-container:hover {
+            border-color: #303F9F;
+        }
+        #signatureCanvas {
+            width: 100%;
+            height: 250px;
+            display: block;
+            touch-action: none;
+        }
+        .signature-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #adb5bd;
+            pointer-events: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body class="bg-light">
+
+    <!-- Desktop Navbar (Hidden in Report Page but kept for nav) -->
+    <nav class="navbar-web">
+        <a href="home.html" class="navbar-brand">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+            <span>OvaDrugX</span>
+        </a>
+        <div class="desktop-nav">
+            <a href="home.html">Home</a>
+            <a href="screening.html">Screening</a>
+            <a href="targets.html">Targets</a>
+        </div>
+    </nav>
+
+    <button class="btn btn-primary rounded-pill btn-export-floating px-4 py-2" id="exportBtn">
+        <i class="fas fa-file-pdf me-2"></i> Export PDF Report
+    </button>
+
+    <div class="report-page" id="reportContent">
+        <div class="report-header">
+            <h1>OvaDrugX report</h1>
+            <p>Clinical AI-Powered Drug Screening Analysis</p>
+        </div>
+
+        <div class="report-section">
+            <h2 class="section-title">Screening Results Summary</h2>
+            <div class="summary-grid">
+                <span class="summary-label">Target Gene:</span>
+                <span class="summary-value" id="resGene">-</span>
+                
+                <span class="summary-label">Drug Candidate:</span>
+                <span class="summary-value" id="resDrug">-</span>
+                
+                <span class="summary-label">Chemical Compound:</span>
+                <span class="summary-value" id="resCompound">-</span>
+                
+                <span class="summary-label">Binding Affinity:</span>
+                <span class="summary-value" id="resAffinity">-</span>
+                
+                <span class="summary-label">Efficiency Score:</span>
+                <span class="summary-value" id="resScore">-</span>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="report-section">
+            <h2 class="section-title">Risk & Effectiveness Data</h2>
+            
+            <div class="progress-container">
+                <span class="summary-label">Predicted Efficiency:</span>
+                <div class="report-progress"><div id="barEfficiency" class="pb-efficiency h-100" style="width: 0%"></div></div>
+                <span class="summary-value fw-bold" id="valEfficiency">0%</span>
+            </div>
+            
+            <div class="progress-container">
+                <span class="summary-label">Safety Profile:</span>
+                <div class="report-progress"><div id="barSafety" class="pb-safety h-100" style="width: 0%"></div></div>
+                <span class="summary-value fw-bold" id="valSafety">0%</span>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <span class="summary-label">Side Effect Probability:</span>
+                <div class="bar-chart-container">
+                    <div class="bar-wrapper">
+                        <span class="bar-value" id="valCardio">0%</span>
+                        <div class="bar" id="barCardio" style="height: 0%"></div>
+                        <span class="bar-label">Cardiotoxicity</span>
+                    </div>
+                    <div class="bar-wrapper">
+                        <span class="bar-value" id="valHepato">0%</span>
+                        <div class="bar" id="barHepato" style="height: 0%"></div>
+                        <span class="bar-label">Hepatotoxicity</span>
+                    </div>
+                    <div class="bar-wrapper">
+                        <span class="bar-value" id="valNeuro">0%</span>
+                        <div class="bar" id="barNeuro" style="height: 0%"></div>
+                        <span class="bar-label">Neurotoxicity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-section" style="margin-top: 50px;">
+            <h2 class="section-title" id="forecastTitle">Weekly Clinical Progression Forecast (-)</h2>
+            <div class="forecast-container">
+                <div class="forecast-bar"><div class="forecast-fill" id="fw1" style="height: 0%"></div><span class="forecast-label">Week 1</span></div>
+                <div class="forecast-bar"><div class="forecast-fill" id="fw2" style="height: 0%"></div><span class="forecast-label">Week 2</span></div>
+                <div class="forecast-bar"><div class="forecast-fill" id="fw3" style="height: 0%"></div><span class="forecast-label">Week 3</span></div>
+                <div class="forecast-bar"><div class="forecast-fill" id="fw4" style="height: 0%"></div><span class="forecast-label">Week 4</span></div>
+            </div>
+        </div>
+
+        <div class="report-footer">
+            <div class="signature-area">
+                <span id="sigName">C. Prakash</span>
+            </div>
+            <div class="footer-info">
+                <div class="footer-brand">OvaDrugX Digital Signature</div>
+                <div class="footer-detail">Validated & Verified AI Screening Node</div>
+                <div class="footer-detail">Auth ID: <span id="authId">1773902174729</span></div>
+                <div class="footer-detail">ovadrugx.team@gmail.com</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital Signature Modal -->
+    <div class="modal fade" id="signatureModal" tabindex="-1" aria-labelledby="signatureModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="signatureModalLabel">Authorization Signature</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-secondary small mb-4">Please sign below to authorize the clinical analysis report for export.</p>
+                    
+                    <div class="signature-pad-container">
+                        <canvas id="signatureCanvas"></canvas>
+                        <div class="signature-placeholder" id="sigPlaceholder">Sign here (Mouse/Touch)</div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="button" class="btn btn-light w-100 py-2 fw-semibold" id="clearBtn">
+                            <i class="fas fa-eraser me-2"></i>Clear
+                        </button>
+                        <button type="button" class="btn btn-primary w-100 py-2 fw-semibold" id="confirmExportBtn">
+                            Authorize & Export <i class="fas fa-chevron-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="screening.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Screening</span>
+        </a>
+        <a href="targets.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Targets</span>
+        </a>
+        <a href="insights.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Insights</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="assets/js/workflow.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bestDrugData = JSON.parse(localStorage.getItem('best_drug'));
+            if (!bestDrugData) {
+                alert('No discovery data found. Please start from the home page.');
+                window.location.href = 'home.html';
+                return;
+            }
+
+            const { drug, score, data } = bestDrugData;
+            const gene = localStorage.getItem('discovery_gene');
+            const details = data.report_details;
+
+            // 1. Summary
+            document.getElementById('resGene').textContent = gene;
+            document.getElementById('resDrug').textContent = drug;
+            document.getElementById('resCompound').textContent = details.chemical_compound + ' (Synthetic)';
+            document.getElementById('resAffinity').textContent = `-${(score / 10 + 0.5).toFixed(1)} kcal/mol`;
+            document.getElementById('resScore').textContent = score + '%';
+
+            // 2. Risk Data
+            document.getElementById('valEfficiency').textContent = score + '%';
+            document.getElementById('barEfficiency').style.width = score + '%';
+            
+            document.getElementById('valSafety').textContent = details.safety_profile + '%';
+            document.getElementById('barSafety').style.width = details.safety_profile + '%';
+
+            // 3. Side Effects
+            const se = details.side_effects;
+            document.getElementById('valCardio').textContent = se.cardiotoxicity + '%';
+            document.getElementById('barCardio').style.height = (se.cardiotoxicity * 20) + 'px'; // scaling
+            
+            document.getElementById('valHepato').textContent = se.hepatotoxicity + '%';
+            document.getElementById('barHepato').style.height = (se.hepatotoxicity * 20) + 'px';
+            
+            document.getElementById('valNeuro').textContent = se.neurotoxicity + '%';
+            document.getElementById('barNeuro').style.height = (se.neurotoxicity * 20) + 'px';
+
+            // 4. Forecast
+            document.getElementById('forecastTitle').textContent = `Weekly Clinical Progression Forecast (${drug})`;
+            const wf = details.weekly_forecast;
+            document.getElementById('fw1').style.height = wf[0] + '%';
+            document.getElementById('fw2').style.height = wf[1] + '%';
+            document.getElementById('fw3').style.height = wf[2] + '%';
+            document.getElementById('fw4').style.height = wf[3] + '%';
+
+            // 5. Auth ID
+            document.getElementById('authId').textContent = Math.floor(Math.random() * 9000000000000) + 1000000000000;
+
+            // --- Signature Pad Logic ---
+            const canvas = document.getElementById('signatureCanvas');
+            const ctx = canvas.getContext('2d');
+            const clearBtn = document.getElementById('clearBtn');
+            const placeholder = document.getElementById('sigPlaceholder');
+            let isDrawing = false;
+            let hasSigned = false;
+
+            function resizeCanvas() {
+                const ratio = window.devicePixelRatio || 1;
+                canvas.width = canvas.offsetWidth * ratio;
+                canvas.height = canvas.offsetHeight * ratio;
+                ctx.scale(ratio, ratio);
+                ctx.lineWidth = 2.5;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = '#303F9F';
+            }
+
+            // Sync canvas size on modal show
+            document.getElementById('signatureModal').addEventListener('shown.bs.modal', resizeCanvas);
+            window.addEventListener('resize', resizeCanvas);
+
+            function startPosition(e) {
+                isDrawing = true;
+                hasSigned = true;
+                placeholder.style.display = 'none';
+                draw(e);
+            }
+
+            function finishedPosition() {
+                isDrawing = false;
+                ctx.beginPath();
+            }
+
+            function draw(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+
+            canvas.addEventListener('mousedown', startPosition);
+            canvas.addEventListener('mouseup', finishedPosition);
+            canvas.addEventListener('mousemove', draw);
+            
+            canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startPosition(e); });
+            canvas.addEventListener('touchend', finishedPosition);
+            canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); });
+
+            clearBtn.addEventListener('click', () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                placeholder.style.display = 'block';
+                hasSigned = false;
+            });
+
+            // Trigger Modal instead of direct export
+            const signatureModal = new bootstrap.Modal(document.getElementById('signatureModal'));
+            document.getElementById('exportBtn').addEventListener('click', () => {
+                signatureModal.show();
+            });
+
+            // Final Export with Signature
+            document.getElementById('confirmExportBtn').addEventListener('click', () => {
+                if (!hasSigned) {
+                    alert('Please provide a signature to authorize the export.');
+                    return;
+                }
+
+                // Place signature image into the report
+                const signatureImage = canvas.toDataURL();
+                const sigArea = document.querySelector('.signature-area');
+                sigArea.innerHTML = `<img src="${signatureImage}" alt="Signature" style="max-height: 80px; width: auto; margin-top: -20px;">`;
+
+                signatureModal.hide();
+
+                // Start PDF Generation
+                const element = document.getElementById('reportContent');
+                const opt = {
+                    margin:       10,
+                    filename:     `OvaDrugX_Report_${drug}.pdf`,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                html2pdf().set(opt).from(element).save();
+            });
+        });
+    </script>
+</body>
+</html>

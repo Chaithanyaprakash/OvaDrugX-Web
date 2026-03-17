@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - AI Discoveries</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body class="bg-light">
+
+    <!-- Desktop Navbar -->
+    <nav class="navbar-web">
+        <a href="home.html" class="navbar-brand">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+            <span>OvaDrugX</span>
+        </a>
+        
+        <div class="desktop-nav">
+            <a href="home.html">Home</a>
+            <a href="screening.html">Screening</a>
+            <a href="targets.html">Targets</a>
+            <a href="insights.html">Insights</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        
+        <div class="d-flex align-items-center gap-3">
+            <div class="stat-chip d-none d-md-flex" style="border-radius: 50%; width: 40px; height: 40px; justify-content: center; padding: 0;">
+                <i class="far fa-bell text-dark"></i>
+            </div>
+            <a href="profile.html">
+                <img src="assets/img/profile.png" alt="Profile" width="40" height="40" class="rounded-circle shadow-sm border border-2 border-white">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="mb-4">
+            <div class="d-flex align-items-center gap-3 mb-2">
+                <a href="home.html" class="btn btn-light rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1 class="h3 fw-bold mb-0">AI Discoveries</h1>
+            </div>
+            <p class="text-secondary">Explore the latest AI-identified drug candidates and molecular breakthroughs.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Discovery Card 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="premium-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3">
+                            <i class="fas fa-dna fs-4"></i>
+                        </div>
+                        <span class="badge bg-success bg-opacity-10 text-success fw-bold">New Breakthrough</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Target BRCA1-X</h5>
+                    <p class="small text-secondary mb-4">Highly selective inhibitor identified for resistant ovarian cancer strains.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="small fw-bold text-primary">Confidence Score</span>
+                        <span class="fw-bold">98.2%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discovery Card 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="premium-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="bg-info bg-opacity-10 text-info rounded-3 p-3">
+                            <i class="fas fa-atom fs-4"></i>
+                        </div>
+                        <span class="badge bg-primary bg-opacity-10 text-primary fw-bold">Optimized</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Compound OVA-782</h5>
+                    <p class="small text-secondary mb-4">Optimized lead compound with 45% improved binding affinity scores.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="small fw-bold text-primary">Confidence Score</span>
+                        <span class="fw-bold">94.5%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discovery Card 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="premium-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-3">
+                            <i class="fas fa-flask fs-4"></i>
+                        </div>
+                        <span class="badge bg-warning bg-opacity-10 text-warning fw-bold">In Review</span>
+                    </div>
+                    <h5 class="fw-bold mb-2">Pathway PTEN-Inhib</h5>
+                    <p class="small text-secondary mb-4">Novel signaling pathway inhibitors identified for high-risk patients.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="small fw-bold text-primary">Confidence Score</span>
+                        <span class="fw-bold">92.0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="screening.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Screening</span>
+        </a>
+        <a href="targets.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Targets</span>
+        </a>
+        <a href="insights.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Insights</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

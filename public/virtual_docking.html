@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Virtual Docking</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .feed-item {
+            border-left: 4px solid var(--primary-blue);
+            padding: 15px 20px;
+            background: white;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 16px;
+            transition: transform 0.2s;
+        }
+        
+        .feed-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .score-badge {
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: 700;
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body class="bg-light">
+
+    <!-- Desktop Navbar -->
+    <nav class="navbar-web">
+        <a href="home.html" class="navbar-brand">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+            <span>OvaDrugX</span>
+        </a>
+        
+        <div class="desktop-nav">
+            <a href="home.html">Home</a>
+            <a href="screening.html">Screening</a>
+            <a href="targets.html">Targets</a>
+            <a href="insights.html">Insights</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        
+        <div class="d-flex align-items-center gap-3">
+            <div class="stat-chip d-none d-md-flex" style="border-radius: 50%; width: 40px; height: 40px; justify-content: center; padding: 0;">
+                <i class="far fa-bell text-dark"></i>
+            </div>
+            <a href="profile.html">
+                <img src="assets/img/profile.png" alt="Profile" width="40" height="40" class="rounded-circle shadow-sm border border-2 border-white">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="mb-4">
+            <h1 class="h3 fw-bold mb-0">Virtual Docking Feed</h1>
+            <p class="text-secondary">Real-time binding score simulations across thousands of molecular combinations.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8">
+                <h6 class="fw-bold mb-3 text-secondary">Active Simulations</h6>
+                
+                <div class="feed-item premium-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="small fw-bold text-primary">ANALYSIS #7829</span>
+                        <span class="text-secondary small">Just now</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Compound BR-501 + PARP1 Protein</h6>
+                            <p class="small text-secondary mb-0">Binding Affinity: <span class="text-success fw-bold">-8.4 kcal/mol</span></p>
+                        </div>
+                        <div class="score-badge text-success">-8.4</div>
+                    </div>
+                </div>
+
+                <div class="feed-item premium-card" style="border-color: var(--neon-cyan);">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="small fw-bold text-info">ANALYSIS #7828</span>
+                        <span class="text-secondary small">2 mins ago</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Compound GL-209 + BRCA1 Protein</h6>
+                            <p class="small text-secondary mb-0">Binding Affinity: <span class="text-info fw-bold">-7.2 kcal/mol</span></p>
+                        </div>
+                        <div class="score-badge text-info">-7.2</div>
+                    </div>
+                </div>
+
+                <div class="feed-item premium-card" style="border-color: var(--warning-orange);">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="small fw-bold text-warning">ANALYSIS #7825</span>
+                        <span class="text-secondary small">15 mins ago</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Compound XL-045 + TP53 Protein</h6>
+                            <p class="small text-secondary mb-0">Binding Affinity: <span class="text-warning fw-bold">-5.1 kcal/mol</span></p>
+                        </div>
+                        <div class="score-badge text-warning">-5.1</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="premium-card p-4 mb-4">
+                    <h5 class="fw-bold mb-3">Live Stats</h5>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="small text-secondary">Simulations/min</span>
+                        <span class="fw-bold">142</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="small text-secondary">Candidates Found</span>
+                        <span class="fw-bold">12</span>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <div class="spinner-grow text-primary spinner-grow-sm me-2" role="status"></div>
+                        <span class="small fw-bold">Live Stream Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="screening.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Screening</span>
+        </a>
+        <a href="targets.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Targets</span>
+        </a>
+        <a href="insights.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Insights</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

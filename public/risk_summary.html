@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Risk Summary</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.logo-section {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.user-section {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-section {
+    flex: 1;
+    padding: 1rem 0;
+}
+
+.nav-link {
+    color: #4b5563;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin: 0.25rem 0;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    background: linear-gradient(135deg, #2563eb10, #7c3aed10);
+    color: #2563eb;
+}
+
+.nav-link i {
+    width: 24px;
+}
+
+.ai-assistant {
+    background: linear-gradient(135deg, #2563eb10, #7c3aed10);
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+/* Main Content */
+.main-content {
+    background: rgba(255, 255, 255, 0.95);
+    min-height: 100vh;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+}
+
+.breadcrumb-item a {
+    color: #6b7280;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #2563eb;
+}
+
+/* Gene Badge */
+.gene-badge {
+    background: #f3f4f6;
+    font-size: 0.9rem;
+}
+
+/* Metric Cards */
+.metric-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.card {
+    border-radius: 1rem;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Table Styles */
+.table {
+    margin-bottom: 0;
+}
+
+.table td {
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Tabs */
+.nav-tabs {
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #6b7280;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    transition: all 0.3s;
+}
+
+.nav-tabs .nav-link:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+}
+
+.nav-tabs .nav-link.active {
+    color: #2563eb;
+    background: transparent;
+    border-bottom: 3px solid #2563eb;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 500;
+}
+
+/* Interaction Cards */
+.interaction-card {
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.interaction-card:hover {
+    border-color: #2563eb;
+    transform: translateX(5px);
+}
+
+.binding-site {
+    background: linear-gradient(135deg, #1e293b, #0f172a) !important;
+}
+
+/* Clinical Cards */
+.clinical-card {
+    transition: all 0.3s;
+}
+
+.clinical-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Progress Bars */
+.progress {
+    height: 8px;
+    border-radius: 1rem;
+    background-color: #e5e7eb;
+}
+
+.progress-bar {
+    border-radius: 1rem;
+    transition: width 0.3s ease;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37,99,235,0.3);
+}
+
+.btn-outline-primary {
+    border: 2px solid #2563eb;
+    color: #2563eb;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 1rem;
+    border: none;
+}
+
+.pdf-animation {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        height: auto;
+    }
+    
+    .main-content {
+        border-radius: 0;
+    }
+    
+    .metric-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .metric-icon i {
+        font-size: 1.5rem;
+    }
+    
+    .nav-tabs .nav-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar p-0">
+                <div class="sidebar-content">
+                    <div class="logo-section p-4">
+                        <h2 class="text-gradient mb-0">
+                            <i class="fas fa-flask me-2"></i>OvaDrugX
+                        </h2>
+                    </div>
+                    
+                    <div class="user-section p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar bg-primary bg-gradient text-white rounded-3 p-3 me-3">
+                                <i class="fas fa-user-md fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Dr. Sarah Chen</h5>
+                                <small class="text-muted">Principal Investigator</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-section px-3">
+                        <nav class="nav flex-column">
+                            <a href="index.html" class="nav-link">
+                                <i class="fas fa-home me-3"></i>Dashboard
+                            </a>
+                            <a href="screening.html" class="nav-link">
+                                <i class="fas fa-microscope me-3"></i>Screening
+                            </a>
+                            <a href="targets.html" class="nav-link">
+                                <i class="fas fa-dna me-3"></i>Targets
+                            </a>
+                            <a href="insights.html" class="nav-link">
+                                <i class="fas fa-chart-line me-3"></i>Insights
+                            </a>
+                            <a href="profile.html" class="nav-link">
+                                <i class="fas fa-user-circle me-3"></i>Profile
+                            </a>
+                        </nav>
+                    </div>
+
+                    <div class="ai-assistant p-4 mt-auto">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-robot text-primary fa-2x me-3"></i>
+                            <div>
+                                <p class="mb-0 fw-bold">AI Assistant</p>
+                                <small class="text-success">
+                                    <i class="fas fa-circle fa-xs me-1"></i>Online & Ready
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content p-4">
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h2 class="fw-bold">Risk Summary</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="screening.html">Screening</a></li>
+                                <li class="breadcrumb-item active">Risk Summary</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="gene-badge bg-light rounded-pill px-4 py-2 me-3">
+                            <i class="fas fa-dna text-primary me-2"></i>
+                            <span id="currentGene">EGFR</span>
+                            <span class="mx-2 text-muted">|</span>
+                            <span id="currentConfidence">94.2%</span>
+                        </div>
+                        <i class="far fa-bell fs-5 me-3 text-muted position-relative">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                        </i>
+                        <span class="text-muted" id="currentDate"></span>
+                    </div>
+                </div>
+
+                <!-- Summary Header Card -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h3 class="mb-3">Drug-Target Interaction Summary</h3>
+                                <p class="text-muted mb-0">Complete risk assessment and molecular interaction analysis for the best match</p>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <button class="btn btn-primary btn-lg" onclick="exportToPDF()">
+                                    <i class="fas fa-file-pdf me-2"></i>Export Full Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Metrics Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <div class="metric-icon bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                                    <i class="fas fa-dna text-primary fa-2x"></i>
+                                </div>
+                                <h6 class="text-muted mb-2">Target Gene</h6>
+                                <h3 id="summaryGene" class="fw-bold">EGFR</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <div class="metric-icon bg-success bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                                    <i class="fas fa-capsules text-success fa-2x"></i>
+                                </div>
+                                <h6 class="text-muted mb-2">Best Drug Match</h6>
+                                <h3 id="summaryDrug" class="fw-bold">Gefitinib</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <div class="metric-icon bg-warning bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                                    <i class="fas fa-chart-line text-warning fa-2x"></i>
+                                </div>
+                                <h6 class="text-muted mb-2">Binding Affinity</h6>
+                                <h3 id="summaryAffinity" class="fw-bold">-9.8 kcal/mol</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <div class="metric-icon bg-info bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                                    <i class="fas fa-percent text-info fa-2x"></i>
+                                </div>
+                                <h6 class="text-muted mb-2">Compatibility</h6>
+                                <h3 id="summaryCompatibility" class="fw-bold text-success">98%</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Analysis Tabs -->
+                <ul class="nav nav-tabs border-0 mb-4" id="summaryTabs">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#overview">Overview</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#interactions">Molecular Interactions</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#safety">Safety Profile</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#clinical">Clinical Data</button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content mb-4">
+                    <!-- Overview Tab -->
+                    <div class="tab-pane fade show active" id="overview">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">Drug Information</h5>
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <td class="text-muted">Drug Name:</td>
+                                                <td class="fw-bold" id="detailDrugName">Gefitinib</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Target:</td>
+                                                <td class="fw-bold" id="detailTarget">EGFR-TK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Drug Class:</td>
+                                                <td class="fw-bold">Tyrosine Kinase Inhibitor</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">FDA Status:</td>
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">First Approval:</td>
+                                                <td class="fw-bold">2003</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">Binding Metrics</h5>
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <td class="text-muted">Binding Affinity:</td>
+                                                <td class="fw-bold text-primary" id="detailAffinity">-9.8 kcal/mol</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">IC50 Value:</td>
+                                                <td class="fw-bold">12 nM</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Ki Value:</td>
+                                                <td class="fw-bold">0.8 nM</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Selectivity:</td>
+                                                <td class="fw-bold text-success">High</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted">Confidence Score:</td>
+                                                <td class="fw-bold" id="detailConfidence">94.2%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Molecular Interactions Tab -->
+                    <div class="tab-pane fade" id="interactions">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <h5 class="mb-4">3D Molecular Interactions</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="interaction-card bg-light p-4 rounded-4 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <i class="fas fa-link text-primary me-2"></i>
+                                                    <span class="fw-bold">Hydrogen Bonds</span>
+                                                </div>
+                                                <span class="badge bg-primary fs-6">4</span>
+                                            </div>
+                                            <div class="mt-3">
+                                                <small class="text-muted">Residues: MET793, THR790, GLN791, ASP855</small>
+                                            </div>
+                                        </div>
+                                        <div class="interaction-card bg-light p-4 rounded-4 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <i class="fas fa-water text-info me-2"></i>
+                                                    <span class="fw-bold">Hydrophobic Interactions</span>
+                                                </div>
+                                                <span class="badge bg-info fs-6">7</span>
+                                            </div>
+                                        </div>
+                                        <div class="interaction-card bg-light p-4 rounded-4">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <i class="fas fa-layer-group text-warning me-2"></i>
+                                                    <span class="fw-bold">Pi-Stacking</span>
+                                                </div>
+                                                <span class="badge bg-warning fs-6">2</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="binding-site bg-dark text-white p-4 rounded-4">
+                                            <h6 class="mb-3">Binding Site Residues</h6>
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <span class="badge bg-primary">MET793</span>
+                                                <span class="badge bg-primary">THR790</span>
+                                                <span class="badge bg-primary">GLN791</span>
+                                                <span class="badge bg-primary">ASP855</span>
+                                                <span class="badge bg-secondary">LYS745</span>
+                                                <span class="badge bg-secondary">LEU844</span>
+                                                <span class="badge bg-secondary">VAL726</span>
+                                                <span class="badge bg-secondary">ALA743</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Safety Profile Tab -->
+                    <div class="tab-pane fade" id="safety">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <h5 class="mb-4">Safety and Toxicity Profile</h5>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>Parameter</th>
+                                                <th>Value</th>
+                                                <th>Risk Level</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Hepatotoxicity</td>
+                                                <td>Grade 1-2</td>
+                                                <td><span class="badge bg-warning">Moderate</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cardiotoxicity</td>
+                                                <td>Low risk</td>
+                                                <td><span class="badge bg-success">Low</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nephrotoxicity</td>
+                                                <td>Minimal</td>
+                                                <td><span class="badge bg-success">Low</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>GI Toxicity</td>
+                                                <td>Common (45%)</td>
+                                                <td><span class="badge bg-warning">Moderate</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dermatotoxicity</td>
+                                                <td>Very Common (60%)</td>
+                                                <td><span class="badge bg-warning">Moderate</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clinical Data Tab -->
+                    <div class="tab-pane fade" id="clinical">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <h5 class="mb-4">Clinical Trial Data</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="clinical-card bg-light p-4 rounded-4 mb-3">
+                                            <h6>Phase III Trial Results</h6>
+                                            <div class="mt-3">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Overall Response Rate</span>
+                                                    <span class="fw-bold">43%</span>
+                                                </div>
+                                                <div class="progress mb-3">
+                                                    <div class="progress-bar bg-success" style="width: 43%"></div>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Median PFS</span>
+                                                    <span class="fw-bold">9.5 months</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Median OS</span>
+                                                    <span class="fw-bold">24.3 months</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="clinical-card bg-light p-4 rounded-4">
+                                            <h6>Common Adverse Events</h6>
+                                            <div class="mt-3">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Diarrhea</span>
+                                                    <span class="fw-bold">47%</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Rash</span>
+                                                    <span class="fw-bold">52%</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Nausea</span>
+                                                    <span class="fw-bold">35%</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Fatigue</span>
+                                                    <span class="fw-bold">38%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-primary w-100 py-3" onclick="window.location.href='screening.html'">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Screening
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-success w-100 py-3" onclick="saveToFavorites()">
+                            <i class="fas fa-bookmark me-2"></i>Save to Favorites
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-info w-100 py-3" onclick="shareReport()">
+                            <i class="fas fa-share-alt me-2"></i>Share Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Export Modal -->
+    <div class="modal fade" id="pdfExportModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="pdf-animation mb-4">
+                        <i class="fas fa-file-pdf text-danger fa-4x"></i>
+                    </div>
+                    <h4 class="mb-3">Exporting PDF Report</h4>
+                    <p class="text-muted mb-4">Your comprehensive risk summary is being generated...</p>
+                    <div class="progress mb-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                             id="pdfProgress" style="width: 0%"></div>
+                    </div>
+                    <p class="mb-0 text-muted small" id="pdfStatus">Preparing data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Load data from previous page (screening.html)
+    loadRiskSummaryData();
+    
+    // Update date
+    updateDateTime();
+    
+    // Initialize tabs
+    initializeTabs();
+});
+
+// ===== LOAD DATA FROM SCREENING.HTML =====
+function loadRiskSummaryData() {
+    // Get data from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetFromUrl = urlParams.get('target');
+    const drugFromUrl = urlParams.get('drug');
+    
+    // Get data from localStorage (set by screening.html)
+    const riskData = JSON.parse(localStorage.getItem('riskSummaryData') || '{}');
+    const lastGene = localStorage.getItem('lastGene');
+    const lastConfidence = localStorage.getItem('lastConfidence');
+    
+    // Set values with priority: URL params > localStorage > defaults
+    const target = targetFromUrl || riskData.target || 'EGFR';
+    const drug = drugFromUrl || riskData.drug || 'Gefitinib';
+    const gene = riskData.gene || lastGene || 'EGFR';
+    const confidence = lastConfidence || '94.2';
+    const affinity = riskData.affinity || '-9.8 kcal/mol';
+    const compatibility = riskData.compatibility || '98%';
+    
+    // Update all UI elements
+    updateUIElements({
+        gene: gene,
+        drug: drug,
+        target: target,
+        confidence: confidence,
+        affinity: affinity,
+        compatibility: compatibility
+    });
+    
+    // Store for PDF export
+    storeReportData({
+        gene: gene,
+        drug: drug,
+        target: target,
+        confidence: confidence,
+        affinity: affinity,
+        compatibility: compatibility
+    });
+}
+
+// ===== UPDATE UI ELEMENTS =====
+function updateUIElements(data) {
+    // Update header
+    document.getElementById('currentGene').textContent = data.gene;
+    document.getElementById('currentConfidence').textContent = data.confidence + '%';
+    
+    // Update summary cards
+    document.getElementById('summaryGene').textContent = data.gene;
+    document.getElementById('summaryDrug').textContent = data.drug;
+    document.getElementById('summaryAffinity').textContent = data.affinity;
+    document.getElementById('summaryCompatibility').textContent = data.compatibility;
+    
+    // Update detail sections
+    document.getElementById('detailDrugName').textContent = data.drug;
+    document.getElementById('detailTarget').textContent = data.target + '-TK';
+    document.getElementById('detailAffinity').textContent = data.affinity;
+    document.getElementById('detailConfidence').textContent = data.confidence + '%';
+}
+
+// ===== STORE REPORT DATA =====
+function storeReportData(data) {
+    const reportData = {
+        ...data,
+        timestamp: new Date().toISOString(),
+        drugClass: 'Tyrosine Kinase Inhibitor',
+        fdaStatus: 'Approved',
+        approvalYear: '2003',
+        ic50: '12 nM',
+        ki: '0.8 nM',
+        hydrogenBonds: 4,
+        hydrophobicInteractions: 7,
+        piStacking: 2
+    };
+    
+    localStorage.setItem('currentReport', JSON.stringify(reportData));
+}
+
+// ===== PDF EXPORT =====
+function exportToPDF() {
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('pdfExportModal'));
+    modal.show();
+    
+    // Simulate PDF generation
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 10;
+        document.getElementById('pdfProgress').style.width = progress + '%';
+        
+        if (progress <= 30) {
+            document.getElementById('pdfStatus').textContent = 'Gathering molecular data...';
+        } else if (progress <= 60) {
+            document.getElementById('pdfStatus').textContent = 'Formatting interaction maps...';
+        } else if (progress <= 90) {
+            document.getElementById('pdfStatus').textContent = 'Generating safety profile...';
+        } else if (progress >= 100) {
+            clearInterval(interval);
+            document.getElementById('pdfStatus').textContent = 'PDF ready!';
+            
+            setTimeout(() => {
+                modal.hide();
+                showNotification('PDF exported successfully: OvaDrugX_Risk_Summary.pdf', 'success');
+                
+                // Save to localStorage for insights page
+                const reportData = JSON.parse(localStorage.getItem('currentReport') || '{}');
+                localStorage.setItem('lastExport', JSON.stringify({
+                    ...reportData,
+                    exportTime: new Date().toISOString()
+                }));
+            }, 1000);
+        }
+    }, 200);
+}
+
+// ===== SAVE TO FAVORITES =====
+function saveToFavorites() {
+    const reportData = JSON.parse(localStorage.getItem('currentReport') || '{}');
+    
+    // Get existing favorites
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    
+    // Add to favorites
+    favorites.push({
+        ...reportData,
+        savedAt: new Date().toISOString()
+    });
+    
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    showNotification('Report saved to favorites', 'success');
+}
+
+// ===== SHARE REPORT =====
+function shareReport() {
+    const reportData = JSON.parse(localStorage.getItem('currentReport') || '{}');
+    
+    // Simulate sharing
+    showNotification('Generating shareable link...', 'info');
+    
+    setTimeout(() => {
+        showNotification(`Report link copied: OvaDrugX-${reportData.drug}-${reportData.gene}`, 'success');
+    }, 1500);
+}
+
+// ===== INITIALIZE TABS =====
+function initializeTabs() {
+    const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
+    tabs.forEach(tab => {
+        tab.addEventListener('shown.bs.tab', function() {
+            // Refresh any charts if needed
+            console.log('Tab changed to:', this.textContent);
+        });
+    });
+}
+
+// ===== UPDATE DATE =====
+function updateDateTime() {
+    const dateElement = document.getElementById('currentDate');
+    if (dateElement) {
+        const now = new Date();
+        dateElement.textContent = now.toLocaleDateString('en-US', {
+            weekday: 'short', 
+            month: 'short', 
+            day: 'numeric',
+            hour: '2-digit', 
+            minute: '2-digit'
+        });
+    }
+}
+
+// ===== NOTIFICATION SYSTEM =====
+function showNotification(message, type = 'info') {
+    const colors = {
+        success: '#10b981',
+        error: '#ef4444',
+        warning: '#f59e0b',
+        info: '#3b82f6'
+    };
+    
+    const icons = {
+        success: 'check-circle',
+        error: 'exclamation-circle',
+        warning: 'exclamation-triangle',
+        info: 'info-circle'
+    };
+    
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${colors[type]};
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        animation: slideIn 0.3s ease;
+        font-family: 'Inter', sans-serif;
+    `;
+    
+    notification.innerHTML = `
+        <i class="fas fa-${icons[type]} fa-lg"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
+// ===== PRINT FUNCTION =====
+function printReport() {
+    window.print();
+}
+
+// ===== DOWNLOAD RAW DATA =====
+function downloadRawData() {
+    const reportData = JSON.parse(localStorage.getItem('currentReport') || '{}');
+    const dataStr = JSON.stringify(reportData, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    
+    const exportFileDefaultName = `OvaDrugX_${reportData.drug}_data.json`;
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    
+    showNotification('Raw data downloaded', 'success');
+}
+
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Make functions global
+window.exportToPDF = exportToPDF;
+window.saveToFavorites = saveToFavorites;
+window.shareReport = shareReport;
+window.printReport = printReport;
+window.downloadRawData = downloadRawData;
+    </script>
+</body>
+</html>

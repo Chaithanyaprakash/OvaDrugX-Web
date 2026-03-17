@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Model Accuracy</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body class="bg-light">
+
+    <!-- Desktop Navbar -->
+    <nav class="navbar-web">
+        <a href="home.html" class="navbar-brand">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+            <span>OvaDrugX</span>
+        </a>
+        
+        <div class="desktop-nav">
+            <a href="home.html">Home</a>
+            <a href="screening.html">Screening</a>
+            <a href="targets.html">Targets</a>
+            <a href="insights.html">Insights</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        
+        <div class="d-flex align-items-center gap-3">
+            <div class="stat-chip d-none d-md-flex" style="border-radius: 50%; width: 40px; height: 40px; justify-content: center; padding: 0;">
+                <i class="far fa-bell text-dark"></i>
+            </div>
+            <a href="profile.html">
+                <img src="assets/img/profile.png" alt="Profile" width="40" height="40" class="rounded-circle shadow-sm border border-2 border-white">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="mb-4">
+            <div class="d-flex align-items-center gap-3 mb-2">
+                <a href="home.html" class="btn btn-light rounded-circle p-2" style="width: 40px; height: 40px;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1 class="h3 fw-bold mb-0">Model Accuracy</h1>
+            </div>
+            <p class="text-secondary">Tracking the performance and reliability of OvaDrugX AI prediction engines.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Accuracy Metric 1 -->
+            <div class="col-md-6">
+                <div class="premium-card p-4 h-100">
+                    <h6 class="fw-bold mb-4">Target Prediction Confidence</h6>
+                    <div class="d-flex align-items-baseline gap-2 mb-3">
+                        <span class="display-5 fw-bold text-primary">96.8%</span>
+                        <span class="text-success small fw-bold"><i class="fas fa-caret-up"></i> 0.4%</span>
+                    </div>
+                    <p class="small text-secondary mb-4">Average validation score across BRCA1, PARP1, and TP53 target detection models.</p>
+                    <div style="height: 200px;">
+                        <canvas id="accuracyChart1"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accuracy Metric 2 -->
+            <div class="col-md-6">
+                <div class="premium-card p-4 h-100">
+                    <h6 class="fw-bold mb-4">Docking Simulation Reliability</h6>
+                    <div class="d-flex align-items-baseline gap-2 mb-3">
+                        <span class="display-5 fw-bold text-info">94.2%</span>
+                        <span class="text-success small fw-bold"><i class="fas fa-caret-up"></i> 1.2%</span>
+                    </div>
+                    <p class="small text-secondary mb-4">Consistency of binding affinity predictions compared to in-vitro experimental results.</p>
+                    <div style="height: 200px;">
+                        <canvas id="accuracyChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="screening.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Screening</span>
+        </a>
+        <a href="targets.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Targets</span>
+        </a>
+        <a href="insights.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Insights</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx1 = document.getElementById('accuracyChart1').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Accuracy %',
+                        data: [95.2, 95.8, 96.1, 96.4, 96.6, 96.8],
+                        borderColor: '#1976D2',
+                        backgroundColor: 'rgba(25, 118, 210, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { min: 90, max: 100 }, x: { grid: { display: false } } }
+                }
+            });
+
+            const ctx2 = document.getElementById('accuracyChart2').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Vina', 'Smina', 'QuickVina', 'OvaAI'],
+                    datasets: [{
+                        label: 'Reliability %',
+                        data: [82, 85, 84, 94.2],
+                        backgroundColor: ['#E0E0E0', '#E0E0E0', '#E0E0E0', '#00BCD4'],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { min: 0, max: 100 }, x: { grid: { display: false } } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Sign Up</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 10% 20%, rgba(25, 118, 210, 0.05) 0%, rgba(0, 188, 212, 0.05) 90%);
+            padding: 40px 0;
+        }
+        
+        .auth-card {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+        }
+        
+        .logo-container {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            margin: 0 auto 24px;
+        }
+        
+        .form-control {
+            border-radius: 12px;
+            padding: 10px 16px;
+            border: 1px solid #E0E0E0;
+            background-color: #F9FAFB;
+        }
+        
+        .form-control:focus {
+            box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.1);
+            border-color: var(--primary-blue);
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body>
+
+    <div class="premium-card auth-card">
+        <div class="logo-container">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+        </div>
+        
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">Create Account</h3>
+            <p class="text-secondary">Join OvaDrugX for AI-powered drug discovery</p>
+        </div>
+        
+        <form action="signup_otp.html">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold small">First Name</label>
+                    <input type="text" class="form-control" placeholder="John" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold small">Last Name</label>
+                    <input type="text" class="form-control" placeholder="Doe" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-semibold small">Email Address</label>
+                <input type="email" class="form-control" placeholder="name@example.com" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-semibold small">Password</label>
+                <input type="password" class="form-control" placeholder="••••••••" required>
+            </div>
+            
+            <div class="mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="terms" required>
+                    <label class="form-check-label small text-secondary" for="terms">
+                        I agree to the <a href="#" class="text-primary text-decoration-none">Terms of Service</a> and <a href="#" class="text-primary text-decoration-none">Privacy Policy</a>
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-premium w-100 py-3 fs-6 mb-4">Create Account</button>
+            
+            <div class="text-center">
+                <span class="text-secondary small">Already have an account?</span>
+                <a href="signin.html" class="text-primary small fw-bold text-decoration-none">Sign In</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const firstName = e.target.querySelector('input[placeholder="John"]').value;
+            const lastName = e.target.querySelector('input[placeholder="Doe"]').value;
+            const email = e.target.querySelector('input[type="email"]').value;
+            const password = e.target.querySelector('input[type="password"]').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            const userData = {
+                full_name: `${firstName} ${lastName}`,
+                email,
+                password,
+                mobile: '0000000000' // Placeholder for now as it's not in the form but required by backend
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating Account...';
+
+            const result = await auth.register(userData);
+
+            if (result.success) {
+                alert('Success! Check your email for the OTP.');
+                window.location.href = 'signup_otp.html';
+            } else {
+                alert(result.message);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Create Account';
+            }
+        });
+    </script>
+</body>
+
+</html>

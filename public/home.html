@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvaDrugX - Dashboard</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .home-header {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chip-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 8px 0 20px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .chip-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .bar-chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 120px;
+            padding: 10px 0;
+        }
+        
+        .bar {
+            width: 40px;
+            border-radius: 8px;
+            position: relative;
+            transition: height 1s ease;
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .quick-action-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            text-align: center;
+            gap: 10px;
+        }
+        
+        .quick-action-card i {
+            font-size: 24px;
+            color: var(--primary-blue);
+        }
+        
+        .quick-action-card span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/launch.ico">
+</head>
+<body class="bg-light">
+
+    <!-- Desktop Navbar -->
+    <nav class="navbar-web">
+        <a href="home.html" class="navbar-brand">
+            <img src="assets/img/launch.png" alt="OvaDrugX" height="40">
+            <span>OvaDrugX</span>
+        </a>
+        
+        <div class="desktop-nav">
+            <a href="home.html" class="active">Home</a>
+            <a href="screening.html">Screening</a>
+            <a href="targets.html">Targets</a>
+            <a href="insights.html">Insights</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        
+        <div class="d-flex align-items-center gap-3">
+            <div class="stat-chip d-none d-md-flex" style="border-radius: 50%; width: 40px; height: 40px; justify-content: center; padding: 0;">
+                <i class="far fa-bell text-dark"></i>
+            </div>
+            <a href="profile.html">
+                <img src="assets/img/profile.png" alt="Profile" width="40" height="40" class="rounded-circle shadow-sm border border-2 border-white">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        <!-- Stats Chips -->
+        <div class="chip-container">
+            <div class="stat-chip" onclick="location.href='ai_discoveries.html'">
+                <i class="fas fa-magic text-primary"></i>
+                <div class="d-flex flex-column">
+                    <span class="small text-secondary fw-medium">AI Discoveries</span>
+                    <span class="fw-bold">(24)</span>
+                </div>
+            </div>
+            <div class="stat-chip" onclick="location.href='active_trials.html'">
+                <i class="fas fa-play-circle text-success"></i>
+                <div class="d-flex flex-column">
+                    <span class="small text-secondary fw-medium">Active Trials</span>
+                    <span class="fw-bold">(5)</span>
+                </div>
+            </div>
+            <div class="stat-chip" onclick="location.href='model_accuracy.html'">
+                <i class="fas fa-bullseye text-warning"></i>
+                <div class="d-flex flex-column">
+                    <span class="small text-secondary fw-medium">Model Accuracy</span>
+                    <span class="fw-bold">(96%)</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Hero Card: Molecular Docking -->
+        <div class="premium-card hero-gradient p-4 mb-4" onclick="location.href='molecular_docking.html'" style="cursor:pointer">
+            <div class="d-flex align-items-center mb-3">
+                <div class="bg-white bg-opacity-25 rounded-3 p-3 me-3">
+                    <i class="fas fa-dna text-white fs-4"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0 fw-bold">Molecular Docking</h5>
+                    <span class="small opacity-75">Live Analysis Feed</span>
+                </div>
+                <i class="fas fa-chevron-right ms-auto opacity-50"></i>
+            </div>
+        </div>
+
+
+        <!-- Predicted Targets Section -->
+        <div class="mb-4">
+            <h6 class="fw-bold mb-3">Top Predicted Targets</h6>
+            <div class="premium-card p-4">
+                <div class="bar-chart-container mb-3">
+                    <div class="bar" style="height: 70%; background-color: #8BC34A;">
+                        <span class="bar-label">TP53</span>
+                    </div>
+                    <div class="bar" style="height: 100%; background-color: #00BCD4;">
+                        <span class="bar-label">BRCA1</span>
+                    </div>
+                    <div class="bar" style="height: 60%; background-color: #00796B;">
+                        <span class="bar-label">PARP1</span>
+                    </div>
+                    <div class="bar" style="height: 40%; background-color: #ADD8E6;">
+                        <span class="bar-label">PTEN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Docking Feed Card -->
+        <div class="premium-card p-4 mb-4 d-flex align-items-center" onclick="location.href='virtual_docking.html'" style="cursor:pointer">
+            <div class="bg-light rounded-3 p-3 me-3">
+                <i class="fas fa-list-ul text-primary fs-5"></i>
+            </div>
+            <div>
+                <h6 class="mb-0 fw-bold">Virtual Docking Feed</h6>
+                <span class="small text-secondary">Real-time Binding Scores</span>
+            </div>
+            <i class="fas fa-chevron-right ms-auto text-secondary opacity-25"></i>
+        </div>
+
+        <!-- Quick Launch Section -->
+        <div class="mb-5">
+            <h6 class="fw-bold mb-3">Quick Actions</h6>
+            <div class="row g-3">
+                <div class="col-4">
+                    <div class="premium-card quick-action-card" onclick="location.href='upload_report.html'" style="cursor:pointer">
+                        <i class="fas fa-file-upload"></i>
+                        <span>Upload Report</span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="premium-card quick-action-card" onclick="location.href='screening.html'" style="cursor:pointer">
+                        <i class="fas fa-vial"></i>
+                        <span>Start Screening</span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="premium-card quick-action-card" onclick="location.href='target_maps.html'" style="cursor:pointer">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Targets Map</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="screening.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Screening</span>
+        </a>
+        <a href="targets.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Targets</span>
+        </a>
+        <a href="insights.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Insights</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = auth.checkAuth();
+            if (user) {
+                console.log('User authenticated:', user);
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>
