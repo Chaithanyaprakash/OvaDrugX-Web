@@ -2,7 +2,7 @@
  * auth.js - Centralized authentication logic for OvaDrugX web
  */
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'http://180.235.121.253:8076';
 
 const auth = {
     /**

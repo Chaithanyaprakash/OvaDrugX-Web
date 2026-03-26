@@ -2,13 +2,15 @@
  * workflow.js - Automated Drug Discovery Workflow Logic
  */
 
+const API_BASE_URL = 'http://180.235.121.253:8076';
+
 const workflow = {
     /**
      * Fetch Predicted Targets
      */
     async fetchTargets(geneName) {
         try {
-            const response = await fetch('http://localhost:5000/predict-targets', {
+            const response = await fetch(`${API_BASE_URL}/predict-targets`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ gene_name: geneName })
@@ -26,7 +28,7 @@ const workflow = {
      */
     async screenDrug(gene, compound) {
         try {
-            const response = await fetch('http://localhost:5000/screen-drug', {
+            const response = await fetch(`${API_BASE_URL}/screen-drug`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ gene, compound })
